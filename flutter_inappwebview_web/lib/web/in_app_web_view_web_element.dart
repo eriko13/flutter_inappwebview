@@ -15,6 +15,10 @@ extension on HTMLIFrameElement {
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/csp
   external set csp(String? value);
   external String? get csp;
+
+  // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles
+  external set role(String? value);
+  external String? get role;
 }
 
 class InAppWebViewWebElement implements Disposable {
@@ -228,6 +232,7 @@ class InAppWebViewWebElement implements Disposable {
           iframe.referrerPolicy;
       iframe.name = settings!.iframeName ?? iframe.name;
       iframe.csp = settings!.iframeCsp ?? iframe.csp;
+      iframe.role = settings!.iframeRole ?? iframe.role;
 
       if (settings!.iframeSandbox != null &&
           settings!.iframeSandbox != Sandbox.ALLOW_ALL) {
@@ -465,6 +470,9 @@ class InAppWebViewWebElement implements Disposable {
     }
     if (settings!.iframeCsp != newSettings.iframeCsp) {
       iframe.csp = newSettings.iframeCsp;
+    }
+    if (settings!.iframeRole != newSettings.iframeRole) {
+      iframe.role = newSettings.iframeRole;
     }
 
     if (settings!.iframeSandbox != newSettings.iframeSandbox) {
